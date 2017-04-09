@@ -24,8 +24,23 @@ $susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
     .eventList {
         height: 100%;
 
-        .eventItem {
+        .item {
+            cursor: pointer;
             height: auto;
+
+            i.dismiss {
+                display: none;
+            }
+
+            &:hover {
+                .dismiss {
+                    display: table-cell;
+                }
+            }
+        }
+
+        div.item .content {
+            margin-bottom: 10px;
         }
     }
 }
