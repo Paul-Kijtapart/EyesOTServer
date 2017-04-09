@@ -23784,10 +23784,6 @@ var App = function (_React$Component) {
                 console.log("received events.");
                 console.log(event);
             });
-
-            socket.on('new event', function (event) {
-                console.log(event);
-            });
         }
     }, {
         key: 'onFormSubmit',
