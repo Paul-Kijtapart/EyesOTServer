@@ -74,9 +74,9 @@ class EventItem extends React.Component {
       				<Label color={confidence[0]} key={confidence[0]}>{confidence[1]}</Label>
         		</List.Content>
         		<div className='approveButtonDiv'>
-	        		<a className="ui label">
+	        		<a className="ui label" onClick ={this.handleOnCloseItemClick}>
 	        			Resolve <Icon className="approve" name="check square" color="green" size='big' 
-	      				onClick ={this.handleOnCloseItemClick}></Icon>
+	      				></Icon>
 					</a>
       				
       			</div>

@@ -25,14 +25,14 @@ class App extends React.Component {
                 'type': 'Image',
                 'data': 'Firearm',
                 'confidence': 0.21,
-            }, {
+            },{
                 'lat': '49.276875',
                 'lon': '-123.118081',
                 'timestamp': '1491701696832',
                 'device_id': 'PPAP04',
                 'type': 'Sound',
                 'data': 'Gunshot',
-                'confidence': 0.8
+                'confidence': 0.8,
             }],
             currentHover : {
                 'device_id': "",
