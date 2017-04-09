@@ -43702,22 +43702,18 @@ var SearchBar = function (_React$Component) {
 
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"div",
-				{ className: "searchBar" },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					"span",
-					null,
-					" Status: ",
-					isLoading,
-					" "
-				),
+				{ className: "ui search searchBar" },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					"div",
-					{ className: "inputBar" },
+					{ className: "ui icon input inputBar" },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+						className: "prompt",
+						type: "text",
+						placeholder: "Search by type of the event",
 						onChange: this.handleInputTextChange,
-						value: current_search_text,
-						type: "text"
-					})
+						value: current_search_text
+					}),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "search icon" })
 				)
 			);
 		}
@@ -54462,6 +54458,11 @@ var App = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'leftContainer' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_SearchBar_js__["a" /* default */], {
+                        isLoading: this.state.isLoading,
+                        current_search_text: this.state.current_search_text,
+                        OnInputTextChange: this.OnInputTextChange
+                    }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_EventList_js__["a" /* default */], {
                         eventList: filtered_event_list,
                         onCloseItemClick: this.onCloseItemClick,
@@ -54471,11 +54472,6 @@ var App = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'rightContainer' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_SearchBar_js__["a" /* default */], {
-                        isLoading: this.state.isLoading,
-                        current_search_text: this.state.current_search_text,
-                        OnInputTextChange: this.OnInputTextChange
-                    }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_5__components_ContentWrapper_js__["a" /* default */],
                         null,
