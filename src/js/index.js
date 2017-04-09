@@ -31,6 +31,10 @@ class App extends React.Component {
         socket.on("chat message", function(msg) {
             $('#messages').append($('<li>').text(msg));
         });
+
+        socket.on('new event', function(event) {
+            console.log(event);
+        });
     }
 
     onFormSubmit(e) {

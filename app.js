@@ -16,9 +16,9 @@ app.use(morgan('dev'));
 
 /* Handle each route */
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,6 +41,9 @@ app.post('/newEvent/', function(req, res) {
 
 	console.log(res.body)
 		// TODO: broad the newEvent to all clients
+
+	var io = req.app.get('socketio');
+	io.emit('new event', req.body);
 	res.send("new event created")
 })
 

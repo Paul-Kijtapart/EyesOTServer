@@ -45,6 +45,10 @@ io.on('connection', function(socket) {
   });
 });
 
+// Store reference to io
+app.set('socketio', io);
+
+
 /**
  * Normalize a port into a number, string, or false.
  */
