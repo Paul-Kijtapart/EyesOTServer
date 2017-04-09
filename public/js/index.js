@@ -23909,7 +23909,7 @@ var App = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'ui left vertical inverted very wide sidebar menu visible' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_EventList_js__["a" /* default */], this.state.eventList)
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_EventList_js__["a" /* default */], { eventList: this.state.eventList })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { id: 'messages' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

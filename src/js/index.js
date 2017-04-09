@@ -52,7 +52,7 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="ui left vertical inverted very wide sidebar menu visible">
-                  <EventList {...this.state.eventList}/>
+                  <EventList eventList={this.state.eventList}/>
                 </div>
                 <ul id="messages"></ul>
 
