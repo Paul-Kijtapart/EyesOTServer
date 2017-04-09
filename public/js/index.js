@@ -13293,7 +13293,7 @@ var EventItem = function (_React$Component) {
 		value: function render() {
 			var device_id = this.props.device_id;
 			var data = this.props.data;
-			var timestamp = new Date(this.props.timestamp);
+			var timestamp = new Date(parseInt(this.props.timestamp));
 
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"li",
@@ -13309,7 +13309,7 @@ var EventItem = function (_React$Component) {
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							"div",
 							{ className: "sub header" },
-							"Firearm detected"
+							data
 						)
 					)
 				),
@@ -13323,7 +13323,7 @@ var EventItem = function (_React$Component) {
 					"p",
 					null,
 					"Time: ",
-					timestamp.split(" ")[0]
+					timestamp.toTimeString().split(" ")[0]
 				)
 			);
 		}
@@ -23863,7 +23863,14 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            eventList: []
+            eventList: [{
+                'lat': '123',
+                'long': '129',
+                'timestamp': '1491700696872',
+                'device_id': '1',
+                'type': 'image',
+                'data': 'dog'
+            }]
         };
 
         _this.onFormSubmit = _this.onFormSubmit.bind(_this);
