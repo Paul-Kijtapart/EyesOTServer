@@ -16,7 +16,7 @@ $susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
 }
 
 .leftContainer {
-    @include span(4 of 12);
+    @include span(3 of 12);
 
     background-color: black;
     height: 100%;
@@ -31,7 +31,7 @@ $susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
 }
 
 .rightContainer {
-    @include span(8 of 12 last);
+    @include span(9 of 12 last);
 
     height: 100%;
 
@@ -48,6 +48,10 @@ $susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
 
         .mapView {
             height: auto;
+
+            #map {
+            	height: 500px;
+            }
         }
     }
 }

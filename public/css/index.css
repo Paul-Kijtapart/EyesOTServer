@@ -273,7 +273,7 @@ th {
   box-sizing: border-box;
 }
 
-/* line 11, ../../src/sass/index.scss */
+/* line 10, ../../src/sass/index.scss */
 .app {
   max-width: 1140px;
   margin-left: auto;
@@ -289,19 +289,47 @@ th {
   clear: both;
 }
 
-/* line 19, ../../src/sass/index.scss */
+/* line 18, ../../src/sass/index.scss */
 .leftContainer {
-  width: 32.20339%;
+  width: 23.72881%;
   float: left;
   margin-right: 1.69492%;
   background-color: black;
+  height: 100%;
+}
+/* line 24, ../../src/sass/index.scss */
+.leftContainer .eventList {
+  height: 100%;
+}
+/* line 27, ../../src/sass/index.scss */
+.leftContainer .eventList .eventItem {
   height: auto;
 }
 
-/* line 31, ../../src/sass/index.scss */
+/* line 33, ../../src/sass/index.scss */
 .rightContainer {
-  width: 66.10169%;
+  width: 74.57627%;
   float: right;
   margin-right: 0;
+  height: 100%;
+}
+/* line 38, ../../src/sass/index.scss */
+.rightContainer > div {
+  clear: both;
+}
+/* line 42, ../../src/sass/index.scss */
+.rightContainer .searchBar {
   height: auto;
+}
+/* line 46, ../../src/sass/index.scss */
+.rightContainer .contentWrapper {
+  height: auto;
+}
+/* line 49, ../../src/sass/index.scss */
+.rightContainer .contentWrapper .mapView {
+  height: auto;
+}
+/* line 52, ../../src/sass/index.scss */
+.rightContainer .contentWrapper .mapView #map {
+  height: 500px;
 }

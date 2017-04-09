@@ -18,8 +18,8 @@ class App extends React.Component {
         super(props);
         this.state = {
             eventList: [{
-                'lat': '123',
-                'long': '129',
+                'lat': '49.262778',
+                'lon': '-123.114444',
                 'timestamp': '1491700696872',
                 'device_id': '1',
                 'type': 'image',
@@ -51,7 +51,9 @@ class App extends React.Component {
                 <div className="rightContainer">
                     <SearchBar />
                     <ContentWrapper> 
-                        <MapView />
+                        <MapView 
+                            eventList={this.state.eventList}
+                        />
                     </ContentWrapper>
                 </div>
             </div>
