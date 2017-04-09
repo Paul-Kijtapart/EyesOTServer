@@ -44456,8 +44456,7 @@ var SearchBar = function (_React$Component) {
 						value: current_search_text
 					}),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["c" /* Icon */], {
-						className: 'search',
-						loading: current_search_text.length != 0
+						className: 'search'
 					})
 				)
 			);
