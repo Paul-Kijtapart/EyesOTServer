@@ -30,11 +30,16 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
         height: 100%;
 
         .item {
-            cursor: pointer;
             height: auto;
 
             i.dismiss {
                 display: none;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                -webkit-transition: padding 2s;
             }
 
             &:hover {
@@ -42,6 +47,25 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
                     display: table-cell;
                 }
             }
+
+            -webkit-transition: padding 2s;
+
+            .approveButtonDiv {
+                width: 100%;
+
+                .label {
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    position: relative;
+                    top: 30%;
+                    left: 50%;
+                    -webkit-transition: padding 2s;
+                }
+            }
+
+            display: flex;
         }
 
         div.item .content {
@@ -65,7 +89,7 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
         div.inputBar {
             height: 40px;
             z-index: 10;
-        
+
             input[type=text] {
                 width: 100%;
                 text-align: center;
@@ -80,7 +104,7 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
             height: auto;
 
             #map {
-                height: 100vh;
+                height: 500px;
             }
         }
     }

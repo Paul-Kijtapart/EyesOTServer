@@ -24,10 +24,10 @@ class App extends React.Component {
                 'device_id': 'PPAP01',
                 'type': 'Image',
                 'data': 'Firearm',
-                'confidence': 0.21
+                'confidence': 0.21,
             }, {
-                'lat': '49.276875',
-                'lon': '-123.118081',
+                'lat': '49.1895',
+                'lon': '-122.8478',
                 'timestamp': '1491701696832',
                 'device_id': 'PPAP04',
                 'type': 'Sound',
@@ -35,7 +35,12 @@ class App extends React.Component {
                 'confidence': 0.8
             }],
             current_search_text: "",
-            isLoading: false
+            isLoading: false,
+            currentHover: {
+                'device_id': "",
+                'timestamp': "",
+                'type': ""
+            }
         };
 
         this.expectedCategorySet = new Set(["type", "data", "device_id"]);
@@ -49,6 +54,9 @@ class App extends React.Component {
         this.removeEvent = this.removeEvent.bind(this);
         this.onCloseItemClick = this.onCloseItemClick.bind(this);
         this.OnInputTextChange = this.OnInputTextChange.bind(this);
+
+        this.changeCurrentEvent = this.changeCurrentEvent.bind(this);
+        this.hoverOnEvent = this.hoverOnEvent.bind(this);
     }
 
     setSearchText(text) {
@@ -60,6 +68,20 @@ class App extends React.Component {
 
     OnInputTextChange(current_text) {
         this.setSearchText(current_text);
+    }
+
+    changeCurrentEvent(event) {
+        this.setState({
+            currentHover: {
+                'device_id': event.device_id,
+                'timestamp': event.timestamp,
+                'type': event.type
+            }
+        });
+    }
+
+    hoverOnEvent(event) {
+        this.changeCurrentEvent(event);
     }
 
     removeEvent(event) {
@@ -81,7 +103,6 @@ class App extends React.Component {
 
     componentDidMount() {
         socket.on('new event', function(event) {
-            console.log(event);
             let current = event;
             this.setState((prevState, props) => {
                 let current_event_list = prevState.eventList;
@@ -159,6 +180,7 @@ class App extends React.Component {
                     <EventList 
                         eventList={filtered_event_list}
                         onCloseItemClick={this.onCloseItemClick}
+                        hoverOnEvent={this.hoverOnEvent}
                     />
                 </div>
                 <div className="rightContainer">
@@ -169,7 +191,8 @@ class App extends React.Component {
                     />
                     <ContentWrapper> 
                         <MapView 
-                            eventList={filtered_event_list}
+                            eventList={this.state.eventList}
+                            currentHover={this.state.currentHover}
                         />
                     </ContentWrapper>
                 </div>

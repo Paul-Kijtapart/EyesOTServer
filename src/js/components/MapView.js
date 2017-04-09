@@ -33,11 +33,24 @@ class EventInfoBox extends React.Component {
 
 class MapView extends React.Component {
 
-	componentDidMount() {
+	constructor(props) {
+		super(props);
+		this.isSameEvent = this.isSameEvent.bind(this);
 
 	}
 
+	isSameEvent(srcEvent, destEvent) {
+		if(destEvent.device_id == srcEvent.device_id &&
+			destEvent.timestamp == srcEvent.timestamp &&
+			destEvent.type == srcEvent.type){
+				return true;
+		}
+
+		return false;
+	}
+
 	render() {
+		const that = this;
 		const map_config = {
 			center: VANCOUVER_POSITION,
 			zoomControl: false,
@@ -63,21 +76,28 @@ class MapView extends React.Component {
 			fillColor: 'orange',
 			color: '#fff',
 			weight: 1,
-			opacity: 0.5,
-			fillOpacity: 0.8
+			opacity: 0.4,
+			fillOpacity: 0.4
 		}
 
 		const eventList = this.props.eventList;
+		const currEvent = this.props.currentHover;
 		const markers = eventList.map(function(event, index) {
 			const position = {
 				lat: parseFloat(event.lat),
 				lon: parseFloat(event.lon)
+			}
+			if (that.isSameEvent(event, currEvent)) {
+				marker_config.opacity = 1;
+			}else{
+				marker_config.opacity = 0.4;
 			}
 
 			return (
 				<Marker
 					key={index}
 					position={position}
+					{...marker_config}
 				>
 					<Popup>
 						<EventInfoBox {...event}/>

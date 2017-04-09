@@ -12,12 +12,17 @@ class EventItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleOnCloseItemClick = this.handleOnCloseItemClick.bind(this);
+		this.handleOnHoverItem = this.handleOnHoverItem.bind(this);
 	}
 
 	handleOnCloseItemClick(e) {
-		console.log("removed " + JSON.stringify(this.event));
 		e.preventDefault();
 		this.props.onCloseItemClick(this.event);
+	}
+
+	handleOnHoverItem(e) {
+		e.preventDefault();
+		this.props.onHoverEvent(this.event);
 	}
 
 	getSeverity(confidence) {
@@ -47,8 +52,9 @@ class EventItem extends React.Component {
 		const icon = this.getIcon(type);
 		const timestamp = new Date(parseInt(this.props.timestamp));
 		const confidence = this.getSeverity(this.props.confidence);
+
 		return (
-			<div className="item">
+			<div className="item" onMouseOver={this.handleOnHoverItem}>
 				<i 
 					onClick={this.handleOnCloseItemClick}
 					className="close icon dismiss"
@@ -61,13 +67,18 @@ class EventItem extends React.Component {
 			    		</Header.Content>
 			    	</Header>
   						<h4>
+  							Type: {data} <br/>
   							Date: {timestamp.toDateString()} <br />
       		  				Time: {timestamp.toTimeString().split(" ")[0]}
       					</h4>
       				<Label color={confidence[0]} key={confidence[0]}>{confidence[1]}</Label>
         		</List.Content>
-        		<div>
-      				<Icon name="check square" color="green" />
+        		<div className='approveButtonDiv'>
+	        		<a className="ui label" onClick ={this.handleOnCloseItemClick}>
+	        			Resolve <Icon className="approve" name="check square" color="green" size='big' 
+	      				></Icon>
+					</a>
+      				
       			</div>
 			</div>
 		);
@@ -77,6 +88,7 @@ class EventItem extends React.Component {
 class EventList extends React.Component {
 	render() {
 		const onCloseItemClick = this.props.onCloseItemClick;
+		const onHoverEvent = this.props.hoverOnEvent;
 		const eventList = this.props.eventList
 			.map(function(event, index) {
 				return (
@@ -89,6 +101,7 @@ class EventList extends React.Component {
 						type={event.type}
 						confidence={event.confidence}
 						onCloseItemClick={onCloseItemClick}
+						onHoverEvent={onHoverEvent}
 					/>
 				);
 			});
