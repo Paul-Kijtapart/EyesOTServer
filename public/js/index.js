@@ -54203,8 +54203,8 @@ var App = function (_React$Component) {
                 'data': 'Firearm',
                 'confidence': 0.21
             }, {
-                'lat': '49.276875',
-                'lon': '-123.118081',
+                'lat': '49.1895',
+                'lon': '-122.8478',
                 'timestamp': '1491701696832',
                 'device_id': 'PPAP04',
                 'type': 'Sound',

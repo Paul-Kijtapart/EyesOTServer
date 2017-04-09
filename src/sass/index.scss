@@ -38,6 +38,7 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
                 &:hover{
                         cursor: pointer;
                 }
+                -webkit-transition: padding 2s;
             }
 
             &:hover {
@@ -45,6 +46,7 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
                     display: table-cell;
                 }
             }
+            -webkit-transition: padding 2s;
 
             .approveButtonDiv{
                 width:100%;
@@ -56,6 +58,7 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
                     position:relative;
                     top:30%;
                     left:50%;
+                    -webkit-transition: padding 2s;
                 }
             }
 
