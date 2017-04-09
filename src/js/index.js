@@ -6,8 +6,11 @@ import io from 'socket.io-client';
 
 /* Components */
 import EventList from './components/EventList.js';
+import ContentWrapper from './components/ContentWrapper.js';
+import MapView from './components/MapView.js';
+import SearchBar from './components/SearchBar.js';
 
-
+/* Socket IO */
 let socket = io();
 
 class App extends React.Component {
@@ -29,14 +32,14 @@ class App extends React.Component {
         socket.on('new event', function(event) {
             console.log(event);
             let current = event;
-            this.setState(function(prevState) {
+            this.setState((prevState, props) => {
                 let current_event_list = prevState.eventList;
                 current_event_list.push(current);
                 return {
                     eventList: current_event_list
                 };
             });
-        });
+        }.bind(this));
     }
 
     render() {
@@ -46,6 +49,10 @@ class App extends React.Component {
                   <EventList eventList={this.state.eventList}/>
                 </div>
                 <div className="rightContainer">
+                    <SearchBar />
+                    <ContentWrapper> 
+                        <MapView />
+                    </ContentWrapper>
                 </div>
             </div>
         );

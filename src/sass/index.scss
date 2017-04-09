@@ -7,28 +7,47 @@ $susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
 
 @include border-box-sizing;
 
-
 .app {
-  @include container(1140px);
+    @include container(1140px);
 
-  background-color: #ccc;
-  height: auto;
-  margin: 0 auto;
+    background-color: #ccc;
+    height: auto;
+    margin: 0 auto;
 }
 
 .leftContainer {
-  @include span(4 of 12);
+    @include span(4 of 12);
 
-  background-color: black;
-  height: auto;
+    background-color: black;
+    height: 100%;
 
-  .eventList {
-  	.eventItem {
-  	}
-  }
+    .eventList {
+        height: 100%;
+
+        .eventItem {
+            height: auto;
+        }
+    }
 }
 
-.rightContainer{
-  @include span(8 of 12 last);
-  height: auto;
+.rightContainer {
+    @include span(8 of 12 last);
+
+    height: 100%;
+
+    > div {
+        clear: both;
+    }
+
+    .searchBar {
+        height: auto;
+    }
+
+    .contentWrapper {
+        height: auto;
+
+        .mapView {
+            height: auto;
+        }
+    }
 }

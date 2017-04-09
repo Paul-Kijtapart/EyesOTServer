@@ -2,7 +2,7 @@ import React from 'react';
 import {
 	List,
 	Segment
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 
 
 class EventItem extends React.Component {
