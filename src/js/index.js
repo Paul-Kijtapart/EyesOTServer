@@ -21,9 +21,18 @@ class App extends React.Component {
                 'lat': '49.262778',
                 'lon': '-123.114444',
                 'timestamp': '1491700696872',
-                'device_id': '1',
-                'type': 'image',
-                'data': 'dog'
+                'device_id': 'PPAP01',
+                'type': 'Image',
+                'data': 'Firearm',
+                'confidence': 0.21
+            }, {
+                'lat': '456',
+                'long': '122',
+                'timestamp': '1491701696832',
+                'device_id': 'PPAP04',
+                'type': 'Sound',
+                'data': 'Gunshot',
+                'confidence': 0.8
             }]
         };
     }
