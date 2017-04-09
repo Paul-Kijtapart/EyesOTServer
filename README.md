@@ -29,3 +29,7 @@ npm start
 
 ## Where to see the final result?
 Go to localhost:3000 to see.
+
+## Heroku Credentials
+email: eyesofthethings@gmail.com
+pw: PPAP2017
