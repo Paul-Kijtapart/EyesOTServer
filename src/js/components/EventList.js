@@ -61,13 +61,18 @@ class EventItem extends React.Component {
 			    		</Header.Content>
 			    	</Header>
   						<h4>
+  							Type: {data} <br/>
   							Date: {timestamp.toDateString()} <br />
       		  				Time: {timestamp.toTimeString().split(" ")[0]}
       					</h4>
       				<Label color={confidence[0]} key={confidence[0]}>{confidence[1]}</Label>
         		</List.Content>
         		<div className='approveButtonDiv'>
-      				<Icon className="approve" name="check square" color="green" size='big' />
+	        		<a className="ui label">
+	        			Resolve <Icon className="approve" name="check square" color="green" size='big' 
+	      				onClick ={this.handleOnCloseItemClick}></Icon>
+					</a>
+      				
       			</div>
 			</div>
 		);

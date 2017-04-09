@@ -35,6 +35,9 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
 
             i.dismiss {
                 display: none;
+                &:hover{
+                        cursor: pointer;
+                }
             }
 
             &:hover {
@@ -46,12 +49,12 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
             .approveButtonDiv{
                 width:100%;
 
-                .approve{
+                .label{
                     &:hover{
                         cursor: pointer;
                     }
                     position:relative;
-                    top:50%;
+                    top:30%;
                     left:50%;
                 }
             }

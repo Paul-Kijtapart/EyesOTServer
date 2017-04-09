@@ -316,53 +316,57 @@ th {
 .leftContainer .eventList .item i.dismiss {
   display: none;
 }
-/* line 41, ../../src/sass/index.scss */
+/* line 38, ../../src/sass/index.scss */
+.leftContainer .eventList .item i.dismiss:hover {
+  cursor: pointer;
+}
+/* line 44, ../../src/sass/index.scss */
 .leftContainer .eventList .item:hover .dismiss {
   display: table-cell;
 }
-/* line 46, ../../src/sass/index.scss */
+/* line 49, ../../src/sass/index.scss */
 .leftContainer .eventList .item .approveButtonDiv {
   width: 100%;
 }
-/* line 49, ../../src/sass/index.scss */
-.leftContainer .eventList .item .approveButtonDiv .approve {
+/* line 52, ../../src/sass/index.scss */
+.leftContainer .eventList .item .approveButtonDiv .label {
   position: relative;
-  top: 50%;
+  top: 30%;
   left: 50%;
 }
-/* line 50, ../../src/sass/index.scss */
-.leftContainer .eventList .item .approveButtonDiv .approve:hover {
+/* line 53, ../../src/sass/index.scss */
+.leftContainer .eventList .item .approveButtonDiv .label:hover {
   cursor: pointer;
 }
-/* line 62, ../../src/sass/index.scss */
+/* line 65, ../../src/sass/index.scss */
 .leftContainer .eventList div.item .content {
   margin-bottom: 10px;
 }
 
-/* line 68, ../../src/sass/index.scss */
+/* line 71, ../../src/sass/index.scss */
 .rightContainer {
   width: 76.27119%;
   float: right;
   margin-right: 0;
   height: 100%;
 }
-/* line 73, ../../src/sass/index.scss */
+/* line 76, ../../src/sass/index.scss */
 .rightContainer > div {
   clear: both;
 }
-/* line 77, ../../src/sass/index.scss */
+/* line 80, ../../src/sass/index.scss */
 .rightContainer .searchBar {
   height: auto;
 }
-/* line 81, ../../src/sass/index.scss */
+/* line 84, ../../src/sass/index.scss */
 .rightContainer .contentWrapper {
   height: auto;
 }
-/* line 84, ../../src/sass/index.scss */
+/* line 87, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView {
   height: auto;
 }
-/* line 87, ../../src/sass/index.scss */
+/* line 90, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView #map {
   height: 100vh;
 }

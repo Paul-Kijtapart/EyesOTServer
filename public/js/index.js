@@ -43394,6 +43394,10 @@ var EventItem = function (_React$Component) {
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'h4',
 						null,
+						'Type: ',
+						data,
+						' ',
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
 						'Date: ',
 						timestamp.toDateString(),
 						' ',
@@ -43410,7 +43414,13 @@ var EventItem = function (_React$Component) {
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'div',
 					{ className: 'approveButtonDiv' },
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["c" /* Icon */], { className: 'approve', name: 'check square', color: 'green', size: 'big' })
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'a',
+						{ className: 'ui label' },
+						'Resolve ',
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["c" /* Icon */], { className: 'approve', name: 'check square', color: 'green', size: 'big',
+							onClick: this.handleOnCloseItemClick })
+					)
 				)
 			);
 		}
