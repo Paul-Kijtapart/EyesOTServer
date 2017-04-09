@@ -23786,6 +23786,10 @@ var App = function (_React$Component) {
             socket.on("chat message", function (msg) {
                 __WEBPACK_IMPORTED_MODULE_2_jquery___default()('#messages').append(__WEBPACK_IMPORTED_MODULE_2_jquery___default()('<li>').text(msg));
             });
+
+            socket.on('new event', function (event) {
+                console.log(event);
+            });
         }
     }, {
         key: 'onFormSubmit',
@@ -23801,15 +23805,85 @@ var App = function (_React$Component) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'app' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { id: 'messages' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'form',
-                    { onSubmit: this.onFormSubmit, action: '' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'm' }),
+                    'div',
+                    { className: 'ui left vertical inverted very wide sidebar menu visible' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        null,
-                        'Send'
+                        'a',
+                        { className: 'item' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h2',
+                            { className: 'ui header inverted' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'image icon' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'content' },
+                                'Device PPAP01',
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'sub header' },
+                                    'Firearm detected'
+                                )
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'p',
+                            null,
+                            'Date: Apr 14, 2017'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'p',
+                            null,
+                            'Time: 09:20:43'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'a',
+                        { className: 'item' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h2',
+                            { className: 'ui header inverted' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'signal icon' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'content' },
+                                'Device PPAP02',
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'sub header' },
+                                    'Gunshot detected'
+                                )
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'p',
+                            null,
+                            'Date: Apr 14, 2017'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'p',
+                            null,
+                            'Time: 09:24:43'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { id: 'messages' })
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'pusher' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'ui container' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'form',
+                            { onSubmit: this.onFormSubmit, action: '' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'm' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'button',
+                                null,
+                                'Send'
+                            )
+                        )
                     )
                 )
             );
