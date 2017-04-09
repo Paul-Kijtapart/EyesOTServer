@@ -26,6 +26,20 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
     background-color: black;
     height: 100%;
 
+    .searchBar {
+        height: auto;
+        padding-top: 20px;
+
+        div.inputBar {
+            width: 100%;
+
+            input[type=text] {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+
     .eventList {
         height: 100%;
 
@@ -81,19 +95,6 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
 
     > div {
         clear: both;
-    }
-
-    .searchBar {
-        height: auto;
-
-        div.inputBar {
-            height: 40px;
-
-            input[type=text] {
-                width: 100%;
-                text-align: center;
-            }
-        }
     }
 
     .contentWrapper {

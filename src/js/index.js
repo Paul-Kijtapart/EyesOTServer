@@ -177,6 +177,11 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="leftContainer">
+                    <SearchBar 
+                        isLoading={this.state.isLoading}
+                        current_search_text={this.state.current_search_text}
+                        OnInputTextChange={this.OnInputTextChange}
+                    />
                     <EventList 
                         eventList={filtered_event_list}
                         onCloseItemClick={this.onCloseItemClick}
@@ -184,11 +189,6 @@ class App extends React.Component {
                     />
                 </div>
                 <div className="rightContainer">
-                    <SearchBar 
-                        isLoading={this.state.isLoading}
-                        current_search_text={this.state.current_search_text}
-                        OnInputTextChange={this.OnInputTextChange}
-                    />
                     <ContentWrapper> 
                         <MapView 
                             eventList={this.state.eventList}

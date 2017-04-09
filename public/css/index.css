@@ -304,81 +304,82 @@ th {
   height: 100%;
 }
 /* line 29, ../../src/sass/index.scss */
+.leftContainer .searchBar {
+  height: auto;
+  padding-top: 20px;
+}
+/* line 33, ../../src/sass/index.scss */
+.leftContainer .searchBar div.inputBar {
+  width: 100%;
+}
+/* line 36, ../../src/sass/index.scss */
+.leftContainer .searchBar div.inputBar input[type=text] {
+  width: 100%;
+  text-align: center;
+}
+/* line 43, ../../src/sass/index.scss */
 .leftContainer .eventList {
   height: 100%;
 }
-/* line 32, ../../src/sass/index.scss */
+/* line 46, ../../src/sass/index.scss */
 .leftContainer .eventList .item {
   height: auto;
   -webkit-transition: padding 2s;
   display: flex;
 }
-/* line 35, ../../src/sass/index.scss */
+/* line 49, ../../src/sass/index.scss */
 .leftContainer .eventList .item i.dismiss {
   display: none;
   -webkit-transition: padding 2s;
 }
-/* line 38, ../../src/sass/index.scss */
+/* line 52, ../../src/sass/index.scss */
 .leftContainer .eventList .item i.dismiss:hover {
   cursor: pointer;
 }
-/* line 46, ../../src/sass/index.scss */
+/* line 60, ../../src/sass/index.scss */
 .leftContainer .eventList .item:hover .dismiss {
   display: table-cell;
 }
-/* line 53, ../../src/sass/index.scss */
+/* line 67, ../../src/sass/index.scss */
 .leftContainer .eventList .item .approveButtonDiv {
   width: 100%;
 }
-/* line 56, ../../src/sass/index.scss */
+/* line 70, ../../src/sass/index.scss */
 .leftContainer .eventList .item .approveButtonDiv .label {
   position: relative;
   top: 30%;
   left: 50%;
   -webkit-transition: padding 2s;
 }
-/* line 57, ../../src/sass/index.scss */
+/* line 71, ../../src/sass/index.scss */
 .leftContainer .eventList .item .approveButtonDiv .label:hover {
   cursor: pointer;
 }
-/* line 71, ../../src/sass/index.scss */
+/* line 85, ../../src/sass/index.scss */
 .leftContainer .eventList div.item .content {
   margin-bottom: 10px;
 }
 
-/* line 77, ../../src/sass/index.scss */
+/* line 91, ../../src/sass/index.scss */
 .rightContainer {
   width: 76.27119%;
   float: right;
   margin-right: 0;
   height: 100%;
 }
-/* line 82, ../../src/sass/index.scss */
+/* line 96, ../../src/sass/index.scss */
 .rightContainer > div {
   clear: both;
 }
-/* line 86, ../../src/sass/index.scss */
-.rightContainer .searchBar {
-  height: auto;
-}
-/* line 89, ../../src/sass/index.scss */
-.rightContainer .searchBar div.inputBar {
-  height: 40px;
-}
-/* line 92, ../../src/sass/index.scss */
-.rightContainer .searchBar div.inputBar input[type=text] {
-  width: 100%;
-  text-align: center;
-}
-/* line 99, ../../src/sass/index.scss */
+/* line 100, ../../src/sass/index.scss */
 .rightContainer .contentWrapper {
   height: auto;
 }
-/* line 102, ../../src/sass/index.scss */
+/* line 103, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView {
   height: auto;
 }
-/* line 105, ../../src/sass/index.scss */
+/* line 106, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView #map {
   height: 100vh;
 }

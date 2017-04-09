@@ -18,14 +18,16 @@ class SearchBar extends React.Component {
 		const isLoading = this.props.isLoading;
 
 		return (
-			<div className="searchBar">
-				<span> Status: {isLoading} </span>
-				<div className="inputBar">
-					<input
+			<div className="ui search searchBar">
+				<div className="ui icon input inputBar">
+					<input 
+						className="prompt" 
+						type="text" 
+						placeholder="Common passwords..."
 						onChange={this.handleInputTextChange} 
 						value={current_search_text}
-						type="text"
 					/>
+    				<i className="search icon" />
 				</div>
 			</div>
 		);
