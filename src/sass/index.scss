@@ -12,7 +12,7 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
 }
 
 .app {
-    @include container();
+    @include container;
     @include clearfix;
 
     background-color: #ccc;
@@ -61,6 +61,16 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
 
     .searchBar {
         height: auto;
+
+        div.inputBar {
+            height: 40px;
+            z-index: 10;
+        
+            input[type=text] {
+                width: 100%;
+                text-align: center;
+            }
+        }
     }
 
     .contentWrapper {

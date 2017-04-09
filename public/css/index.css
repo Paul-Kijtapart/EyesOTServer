@@ -340,15 +340,25 @@ th {
 .rightContainer .searchBar {
   height: auto;
 }
-/* line 66, ../../src/sass/index.scss */
+/* line 65, ../../src/sass/index.scss */
+.rightContainer .searchBar div.inputBar {
+  height: 40px;
+  z-index: 10;
+}
+/* line 69, ../../src/sass/index.scss */
+.rightContainer .searchBar div.inputBar input[type=text] {
+  width: 100%;
+  text-align: center;
+}
+/* line 76, ../../src/sass/index.scss */
 .rightContainer .contentWrapper {
   height: auto;
 }
-/* line 69, ../../src/sass/index.scss */
+/* line 79, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView {
   height: auto;
 }
-/* line 72, ../../src/sass/index.scss */
+/* line 82, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView #map {
   height: 100vh;
 }

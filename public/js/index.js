@@ -43910,17 +43910,47 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SearchBar = function (_React$Component) {
 	_inherits(SearchBar, _React$Component);
 
-	function SearchBar() {
+	function SearchBar(props) {
 		_classCallCheck(this, SearchBar);
 
-		return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+		_this.handleInputTextChange = _this.handleInputTextChange.bind(_this);
+		return _this;
 	}
 
 	_createClass(SearchBar, [{
+		key: "handleInputTextChange",
+		value: function handleInputTextChange(e) {
+			e.preventDefault();
+			this.props.OnInputTextChange(e.target.value);
+		}
+	}, {
 		key: "render",
 		value: function render() {
+			var current_search_text = this.props.current_search_text;
+			var isLoading = this.props.isLoading;
 
-			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "searchBar" });
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				{ className: "searchBar" },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					"span",
+					null,
+					" Status: ",
+					isLoading,
+					" "
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					"div",
+					{ className: "inputBar" },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+						onChange: this.handleInputTextChange,
+						value: current_search_text,
+						type: "text"
+					})
+				)
+			);
 		}
 	}]);
 
@@ -54441,15 +54471,38 @@ var App = function (_React$Component) {
                 'type': 'Sound',
                 'data': 'Gunshot',
                 'confidence': 0.8
-            }]
+            }],
+            current_search_text: "",
+            isLoading: false
         };
 
+        _this.expectedCategorySet = new Set(["type", "data", "device_id"]);
+        _this.defaultExpectedCategoryList = ["type", "data", "device_id"];
+
+        _this.isEventMatchInput = _this.isEventMatchInput.bind(_this);
+        _this.getFilteredMatchedEventList = _this.getFilteredMatchedEventList.bind(_this);
+        _this.getTargetCategoryList = _this.getTargetCategoryList.bind(_this);
+        _this.getFilteredEventList = _this.getFilteredEventList.bind(_this);
+        _this.setSearchText = _this.setSearchText.bind(_this);
         _this.removeEvent = _this.removeEvent.bind(_this);
         _this.onCloseItemClick = _this.onCloseItemClick.bind(_this);
+        _this.OnInputTextChange = _this.OnInputTextChange.bind(_this);
         return _this;
     }
 
     _createClass(App, [{
+        key: 'setSearchText',
+        value: function setSearchText(text) {
+            this.setState({
+                current_search_text: text
+            });
+        }
+    }, {
+        key: 'OnInputTextChange',
+        value: function OnInputTextChange(current_text) {
+            this.setSearchText(current_text);
+        }
+    }, {
         key: 'removeEvent',
         value: function removeEvent(event) {
             var current_event_list = this.state.eventList;
@@ -54484,8 +54537,133 @@ var App = function (_React$Component) {
             }.bind(this));
         }
     }, {
+        key: 'getTargetCategoryList',
+        value: function getTargetCategoryList(spec_text) {
+            var wantedCategories = [];
+            var textTokens = spec_text.split(" ");
+            for (var i = textTokens.length - 1; i >= 0; i -= 1) {
+                if (textTokens[i].length === 0) {
+                    continue;
+                }
+
+                if (this.expectedCategorySet.has(textTokens[i])) {
+                    wantedCategories.push(textTokens[i]);
+                    textTokens.splice(i, 1);
+                }
+            }
+            return {
+                wantedCategories: wantedCategories,
+                inputTokens: textTokens
+            };
+        }
+    }, {
+        key: 'isEventMatchInput',
+        value: function isEventMatchInput(event, expected_data_list, compareFieldList) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = expected_data_list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var data = _step.value;
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
+
+                    try {
+                        for (var _iterator2 = compareFieldList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var field = _step2.value;
+
+                            if (event[field].toLocaleLowerCase().startsWith(data.toLocaleLowerCase())) {
+                                return true;
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+                        } finally {
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return false;
+        }
+    }, {
+        key: 'getFilteredMatchedEventList',
+        value: function getFilteredMatchedEventList(eventList, expected_data_list, compareFieldList) {
+            var res = [];
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = eventList[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var event = _step3.value;
+
+                    if (this.isEventMatchInput(event, expected_data_list, compareFieldList)) {
+                        res.push(event);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
+            return res;
+        }
+    }, {
+        key: 'getFilteredEventList',
+        value: function getFilteredEventList(eventList, spec_text) {
+            if (spec_text.length === 0) {
+                return eventList;
+            }
+
+            var _getTargetCategoryLis = this.getTargetCategoryList(spec_text),
+                wantedCategories = _getTargetCategoryLis.wantedCategories,
+                inputTokens = _getTargetCategoryLis.inputTokens;
+
+            if (wantedCategories.length === 0) {
+                return this.getFilteredMatchedEventList(eventList, inputTokens, this.defaultExpectedCategoryList);
+            }
+            return this.getFilteredMatchedEventList(eventList, inputTokens, wantedCategories);
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var filtered_event_list = this.getFilteredEventList(this.state.eventList, this.state.current_search_text);
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'app' },
@@ -54493,19 +54671,23 @@ var App = function (_React$Component) {
                     'div',
                     { className: 'leftContainer' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_EventList_js__["a" /* default */], {
-                        eventList: this.state.eventList,
+                        eventList: filtered_event_list,
                         onCloseItemClick: this.onCloseItemClick
                     })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'rightContainer' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_SearchBar_js__["a" /* default */], null),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_SearchBar_js__["a" /* default */], {
+                        isLoading: this.state.isLoading,
+                        current_search_text: this.state.current_search_text,
+                        OnInputTextChange: this.OnInputTextChange
+                    }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_5__components_ContentWrapper_js__["a" /* default */],
                         null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_MapView_js__["a" /* default */], {
-                            eventList: this.state.eventList
+                            eventList: filtered_event_list
                         })
                     )
                 )
