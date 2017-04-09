@@ -43,14 +43,10 @@ io.on('connection', function(socket) {
   });
 });
 
+// TODO: refactor after
 app.post('/newEvent/', function(req, res) {
-  // console.log(req.body)
-  // TODO: broad the newEvent to all clients
-
-  // var io = req.app.get('socketio');
+  console.log(req.body);
   io.emit('new event', req.body);
-  // io.socket.broadcast.emit('new event', req.body);
-  // console.log("IO" + io);
   res.send("new event created")
 })
 
