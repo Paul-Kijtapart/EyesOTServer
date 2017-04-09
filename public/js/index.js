@@ -43330,15 +43330,21 @@ var EventItem = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (EventItem.__proto__ || Object.getPrototypeOf(EventItem)).call(this, props));
 
 		_this.handleOnCloseItemClick = _this.handleOnCloseItemClick.bind(_this);
+		_this.handleOnHoverItem = _this.handleOnHoverItem.bind(_this);
 		return _this;
 	}
 
 	_createClass(EventItem, [{
 		key: 'handleOnCloseItemClick',
 		value: function handleOnCloseItemClick(e) {
-			console.log("removed " + JSON.stringify(this.event));
 			e.preventDefault();
 			this.props.onCloseItemClick(this.event);
+		}
+	}, {
+		key: 'handleOnHoverItem',
+		value: function handleOnHoverItem(e) {
+			e.preventDefault();
+			this.props.onHoverEvent(this.event);
 		}
 	}, {
 		key: 'getSeverity',
@@ -43371,9 +43377,10 @@ var EventItem = function (_React$Component) {
 			var icon = this.getIcon(type);
 			var timestamp = new Date(parseInt(this.props.timestamp));
 			var confidence = this.getSeverity(this.props.confidence);
+
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				'div',
-				{ className: 'item' },
+				{ className: 'item', onMouseOver: this.handleOnHoverItem },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
 					onClick: this.handleOnCloseItemClick,
 					className: 'close icon dismiss'
@@ -43442,6 +43449,7 @@ var EventList = function (_React$Component2) {
 		key: 'render',
 		value: function render() {
 			var onCloseItemClick = this.props.onCloseItemClick;
+			var onHoverEvent = this.props.hoverOnEvent;
 			var eventList = this.props.eventList.map(function (event, index) {
 				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(EventItem, {
 					key: index,
@@ -43451,7 +43459,8 @@ var EventList = function (_React$Component2) {
 					timestamp: event.timestamp,
 					type: event.type,
 					confidence: event.confidence,
-					onCloseItemClick: onCloseItemClick
+					onCloseItemClick: onCloseItemClick,
+					onHoverEvent: onHoverEvent
 				});
 			});
 
@@ -43547,18 +43556,29 @@ var EventInfoBox = function (_React$Component) {
 var MapView = function (_React$Component2) {
 	_inherits(MapView, _React$Component2);
 
-	function MapView() {
+	function MapView(props) {
 		_classCallCheck(this, MapView);
 
-		return _possibleConstructorReturn(this, (MapView.__proto__ || Object.getPrototypeOf(MapView)).apply(this, arguments));
+		var _this2 = _possibleConstructorReturn(this, (MapView.__proto__ || Object.getPrototypeOf(MapView)).call(this, props));
+
+		_this2.isSameEvent = _this2.isSameEvent.bind(_this2);
+
+		return _this2;
 	}
 
 	_createClass(MapView, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {}
+		key: 'isSameEvent',
+		value: function isSameEvent(srcEvent, destEvent) {
+			if (destEvent.device_id == srcEvent.device_id && destEvent.timestamp == srcEvent.timestamp && destEvent.type == srcEvent.type) {
+				return true;
+			}
+
+			return false;
+		}
 	}, {
 		key: 'render',
 		value: function render() {
+			var that = this;
 			var map_config = {
 				center: VANCOUVER_POSITION,
 				zoomControl: false,
@@ -43584,23 +43604,29 @@ var MapView = function (_React$Component2) {
 				fillColor: 'orange',
 				color: '#fff',
 				weight: 1,
-				opacity: 0.5,
-				fillOpacity: 0.8
+				opacity: 0.4,
+				fillOpacity: 0.4
 			};
 
 			var eventList = this.props.eventList;
+			var currEvent = this.props.currentHover;
 			var markers = eventList.map(function (event, index) {
 				var position = {
 					lat: parseFloat(event.lat),
 					lon: parseFloat(event.lon)
 				};
+				if (that.isSameEvent(event, currEvent)) {
+					marker_config.opacity = 1;
+				} else {
+					marker_config.opacity = 0.4;
+				}
 
 				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					__WEBPACK_IMPORTED_MODULE_1_react_leaflet__["Marker"],
-					{
+					_extends({
 						key: index,
 						position: position
-					},
+					}, marker_config),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						__WEBPACK_IMPORTED_MODULE_1_react_leaflet__["Popup"],
 						null,
@@ -54184,15 +54210,39 @@ var App = function (_React$Component) {
                 'type': 'Sound',
                 'data': 'Gunshot',
                 'confidence': 0.8
-            }]
+            }],
+            currentHover: {
+                'device_id': "",
+                'timestamp': "",
+                'type': ""
+            }
         };
 
         _this.removeEvent = _this.removeEvent.bind(_this);
         _this.onCloseItemClick = _this.onCloseItemClick.bind(_this);
+        _this.changeCurrentEvent = _this.changeCurrentEvent.bind(_this);
+        _this.hoverOnEvent = _this.hoverOnEvent.bind(_this);
+
         return _this;
     }
 
     _createClass(App, [{
+        key: 'changeCurrentEvent',
+        value: function changeCurrentEvent(event) {
+            this.setState({
+                currentHover: {
+                    'device_id': event.device_id,
+                    'timestamp': event.timestamp,
+                    'type': event.type
+                }
+            });
+        }
+    }, {
+        key: 'hoverOnEvent',
+        value: function hoverOnEvent(event) {
+            this.changeCurrentEvent(event);
+        }
+    }, {
         key: 'removeEvent',
         value: function removeEvent(event) {
             var current_event_list = this.state.eventList;
@@ -54215,7 +54265,6 @@ var App = function (_React$Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             socket.on('new event', function (event) {
-                console.log(event);
                 var current = event;
                 this.setState(function (prevState, props) {
                     var current_event_list = prevState.eventList;
@@ -54237,7 +54286,8 @@ var App = function (_React$Component) {
                     { className: 'leftContainer' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_EventList_js__["a" /* default */], {
                         eventList: this.state.eventList,
-                        onCloseItemClick: this.onCloseItemClick
+                        onCloseItemClick: this.onCloseItemClick,
+                        hoverOnEvent: this.hoverOnEvent
                     })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -54248,7 +54298,8 @@ var App = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_5__components_ContentWrapper_js__["a" /* default */],
                         null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_MapView_js__["a" /* default */], {
-                            eventList: this.state.eventList
+                            eventList: this.state.eventList,
+                            currentHover: this.state.currentHover
                         })
                     )
                 )

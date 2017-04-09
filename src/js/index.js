@@ -24,7 +24,7 @@ class App extends React.Component {
                 'device_id': 'PPAP01',
                 'type': 'Image',
                 'data': 'Firearm',
-                'confidence': 0.21
+                'confidence': 0.21,
             }, {
                 'lat': '49.276875',
                 'lon': '-123.118081',
@@ -33,11 +33,33 @@ class App extends React.Component {
                 'type': 'Sound',
                 'data': 'Gunshot',
                 'confidence': 0.8
-            }]
+            }],
+            currentHover : {
+                'device_id': "",
+                'timestamp': "",
+                'type': ""
+            }
         };
 
         this.removeEvent = this.removeEvent.bind(this);
         this.onCloseItemClick = this.onCloseItemClick.bind(this);
+        this.changeCurrentEvent = this.changeCurrentEvent.bind(this);
+        this.hoverOnEvent = this.hoverOnEvent.bind(this);
+
+    }
+
+    changeCurrentEvent(event){
+        this.setState({
+            currentHover: {
+                'device_id': event.device_id,
+                'timestamp': event.timestamp,
+                'type': event.type
+            }
+        });
+    }
+
+    hoverOnEvent(event){
+        this.changeCurrentEvent(event);
     }
 
     removeEvent(event) {
@@ -59,7 +81,6 @@ class App extends React.Component {
 
     componentDidMount() {
         socket.on('new event', function(event) {
-            console.log(event);
             let current = event;
             this.setState((prevState, props) => {
                 let current_event_list = prevState.eventList;
@@ -78,6 +99,7 @@ class App extends React.Component {
                     <EventList 
                         eventList={this.state.eventList}
                         onCloseItemClick={this.onCloseItemClick}
+                        hoverOnEvent={this.hoverOnEvent}
                     />
                 </div>
                 <div className="rightContainer">
@@ -85,6 +107,7 @@ class App extends React.Component {
                     <ContentWrapper> 
                         <MapView 
                             eventList={this.state.eventList}
+                            currentHover={this.state.currentHover}
                         />
                     </ContentWrapper>
                 </div>
