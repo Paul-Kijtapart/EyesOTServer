@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+	List,
+	Segment
+} from 'semantic-ui-react'
 
 
 class EventItem extends React.Component {
@@ -8,21 +12,17 @@ class EventItem extends React.Component {
 		const timestamp = new Date(parseInt(this.props.timestamp));
 
 		return (
-			<li className="item">
-                <h2 className="ui header inverted">
-                  <i className="image icon"></i>
-                  <div className="content">
-                    {device_id}
-                    <div className="sub header">{data}</div>
-                  </div>
-                </h2>
-                <p>Date: {timestamp.toDateString()}</p>
-                <p>Time: {timestamp.toTimeString().split(" ")[0]}</p>
-            </li>
+			<List.Item>
+				<List.Content>
+          			<List.Header> {data} </List.Header>
+          				<p>Device id: {device_id}</p>
+          				<p>Date: {timestamp.toDateString()}</p>
+                		<p>Time: {timestamp.toTimeString().split(" ")[0]}</p>
+        		</List.Content>
+			</List.Item>
 		);
 	}
 }
-
 
 class EventList extends React.Component {
 	render() {
@@ -39,9 +39,15 @@ class EventList extends React.Component {
 			});
 
 		return (
-			<ul  className="eventList">
+			<Segment  className="eventList" inverted>
+				<List 
+					divided inverted relaxed animated 
+					verticalAlign='middle'
+					size="large"
+				>
 				{eventList}
-			</ul>
+				</List>
+			</Segment>
 		);
 	}
 }
