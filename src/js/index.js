@@ -54,6 +54,7 @@ class App extends React.Component {
         this.removeEvent = this.removeEvent.bind(this);
         this.onCloseItemClick = this.onCloseItemClick.bind(this);
         this.OnInputTextChange = this.OnInputTextChange.bind(this);
+        this.setIsLoading = this.setIsLoading.bind(this);
 
         this.changeCurrentEvent = this.changeCurrentEvent.bind(this);
         this.hoverOnEvent = this.hoverOnEvent.bind(this);
@@ -65,6 +66,11 @@ class App extends React.Component {
         });
     }
 
+    setIsLoading(status) {
+        this.setState({
+            isLoading: status
+        });
+    }
 
     OnInputTextChange(current_text) {
         this.setSearchText(current_text);
@@ -151,6 +157,7 @@ class App extends React.Component {
                 res.push(event);
             }
         }
+
         return res;
     }
 

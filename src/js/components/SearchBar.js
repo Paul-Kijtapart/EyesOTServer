@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {
+	Icon
+} from 'semantic-ui-react';
 
 
 class SearchBar extends React.Component {
@@ -17,6 +20,7 @@ class SearchBar extends React.Component {
 		const current_search_text = this.props.current_search_text;
 		const isLoading = this.props.isLoading;
 
+
 		return (
 			<div className="ui search searchBar">
 				<div className="ui icon input inputBar">
@@ -27,7 +31,10 @@ class SearchBar extends React.Component {
 						onChange={this.handleInputTextChange} 
 						value={current_search_text}
 					/>
-    				<i className="search icon" />
+    				<Icon 
+    					className="search"
+    					loading={current_search_text.length != 0}
+    				/>
 				</div>
 			</div>
 		);

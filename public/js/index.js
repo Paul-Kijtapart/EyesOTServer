@@ -43933,6 +43933,7 @@ var MapView = function (_React$Component2) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__ = __webpack_require__(874);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43940,6 +43941,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
 
 
 
@@ -43956,31 +43959,34 @@ var SearchBar = function (_React$Component) {
 	}
 
 	_createClass(SearchBar, [{
-		key: "handleInputTextChange",
+		key: 'handleInputTextChange',
 		value: function handleInputTextChange(e) {
 			e.preventDefault();
 			this.props.OnInputTextChange(e.target.value);
 		}
 	}, {
-		key: "render",
+		key: 'render',
 		value: function render() {
 			var current_search_text = this.props.current_search_text;
 			var isLoading = this.props.isLoading;
 
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				"div",
-				{ className: "ui search searchBar" },
+				'div',
+				{ className: 'ui search searchBar' },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					"div",
-					{ className: "ui icon input inputBar" },
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-						className: "prompt",
-						type: "text",
-						placeholder: "Common passwords...",
+					'div',
+					{ className: 'ui icon input inputBar' },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+						className: 'prompt',
+						type: 'text',
+						placeholder: 'Common passwords...',
 						onChange: this.handleInputTextChange,
 						value: current_search_text
 					}),
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "search icon" })
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["c" /* Icon */], {
+						className: 'search',
+						loading: current_search_text.length != 0
+					})
 				)
 			);
 		}
@@ -54524,6 +54530,7 @@ var App = function (_React$Component) {
         _this.removeEvent = _this.removeEvent.bind(_this);
         _this.onCloseItemClick = _this.onCloseItemClick.bind(_this);
         _this.OnInputTextChange = _this.OnInputTextChange.bind(_this);
+        _this.setIsLoading = _this.setIsLoading.bind(_this);
 
         _this.changeCurrentEvent = _this.changeCurrentEvent.bind(_this);
         _this.hoverOnEvent = _this.hoverOnEvent.bind(_this);
@@ -54535,6 +54542,13 @@ var App = function (_React$Component) {
         value: function setSearchText(text) {
             this.setState({
                 current_search_text: text
+            });
+        }
+    }, {
+        key: 'setIsLoading',
+        value: function setIsLoading(status) {
+            this.setState({
+                isLoading: status
             });
         }
     }, {
