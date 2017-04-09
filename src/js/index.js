@@ -14,7 +14,14 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            eventList: []
+            eventList: [{
+                'lat': '123',
+                'long': '129',
+                'timestamp': '1491700696872',
+                'device_id': '1',
+                'type': 'image',
+                'data': 'dog'
+            }]
         };
 
         this.onFormSubmit = this.onFormSubmit.bind(this);

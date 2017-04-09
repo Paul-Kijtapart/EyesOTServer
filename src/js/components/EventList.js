@@ -5,7 +5,7 @@ class EventItem extends React.Component {
 	render() {
 		const device_id = this.props.device_id;
 		const data = this.props.data;
-		const timestamp = new Date(this.props.timestamp);
+		const timestamp = new Date(parseInt(this.props.timestamp));
 
 		return (
 			<li className="item">
@@ -13,11 +13,11 @@ class EventItem extends React.Component {
                   <i className="image icon"></i>
                   <div className="content">
                     {device_id}
-                    <div className="sub header">Firearm detected</div>
+                    <div className="sub header">{data}</div>
                   </div>
                 </h2>
                 <p>Date: {timestamp.toDateString()}</p>
-                <p>Time: {timestamp.split(" ")[0]}</p>
+                <p>Time: {timestamp.toTimeString().split(" ")[0]}</p>
             </li>
 		);
 	}
