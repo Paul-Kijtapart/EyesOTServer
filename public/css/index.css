@@ -364,22 +364,21 @@ th {
 /* line 89, ../../src/sass/index.scss */
 .rightContainer .searchBar div.inputBar {
   height: 40px;
-  z-index: 10;
 }
-/* line 93, ../../src/sass/index.scss */
+/* line 92, ../../src/sass/index.scss */
 .rightContainer .searchBar div.inputBar input[type=text] {
   width: 100%;
   text-align: center;
 }
-/* line 100, ../../src/sass/index.scss */
+/* line 99, ../../src/sass/index.scss */
 .rightContainer .contentWrapper {
   height: auto;
 }
-/* line 103, ../../src/sass/index.scss */
+/* line 102, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView {
   height: auto;
 }
-/* line 106, ../../src/sass/index.scss */
+/* line 105, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView #map {
-  height: 500px;
+  height: 100vh;
 }

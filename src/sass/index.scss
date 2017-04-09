@@ -88,7 +88,6 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
 
         div.inputBar {
             height: 40px;
-            z-index: 10;
 
             input[type=text] {
                 width: 100%;
@@ -104,7 +103,7 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
             height: auto;
 
             #map {
-                height: 500px;
+                height: 100vh;
             }
         }
     }
