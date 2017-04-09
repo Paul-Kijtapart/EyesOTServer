@@ -17,7 +17,9 @@ app.use(morgan('dev'));
 /* Handle each route */
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 
 app.get('/', function(req, res) {
 	res.sendFile(path.join(VIEW_PATH, "index.html"));
@@ -25,13 +27,14 @@ app.get('/', function(req, res) {
 
 app.get('/test/', function(req, res) {
 
-  	res.send('Hello World!')
+	res.send('Hello World!')
 })
 
-app.post('/newEvent/', function(req,res){
+app.post('/newEvent/', function(req, res) {
 	console.log(req.body)
 
 	console.log(res.body)
+		// TODO: broad the newEvent to all clients
 	res.send("new event created")
 })
 
