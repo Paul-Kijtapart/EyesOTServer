@@ -28,7 +28,8 @@ class App extends React.Component {
         });
 
         socket.on('new event', function(event) {
-            let current = JSON.parse(event);
+            console.log(event);
+            let current = event;
             console.log(current);
             this.setState(function(prevState) {
                 let current_event_list = prevState.eventList;

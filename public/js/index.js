@@ -23880,7 +23880,8 @@ var App = function (_React$Component) {
             });
 
             socket.on('new event', function (event) {
-                var current = JSON.parse(event);
+                console.log(event);
+                var current = event;
                 console.log(current);
                 this.setState(function (prevState) {
                     var current_event_list = prevState.eventList;
