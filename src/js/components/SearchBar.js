@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {
+	Icon
+} from 'semantic-ui-react';
 
 
 class SearchBar extends React.Component {
@@ -27,7 +30,9 @@ class SearchBar extends React.Component {
 						onChange={this.handleInputTextChange} 
 						value={current_search_text}
 					/>
-    				<i className="search icon" />
+    				<Icon 
+    					className="search"
+    				/>
 				</div>
 			</div>
 		);
