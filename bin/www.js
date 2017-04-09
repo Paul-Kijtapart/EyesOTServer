@@ -18,20 +18,16 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = http.Server(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen(app.get('port'), function() {
-  console.log('Server is running at localhost:' + app.get('port'));
-});
 server.on('error', onError);
 server.on('listening', onListening);
 
 /* IO */
-var io = require('socket.io')(server);
+var io = require('socket.io')(server); // IO declared here
 io.on('connection', function(socket) {
   console.log('a user connected');
   socket.on('disconnect', function() {
@@ -41,13 +37,22 @@ io.on('connection', function(socket) {
 
   socket.on('chat message', function(msg) {
     console.log('message: ' + msg);
-    io.emit('chat message', msg);
+    io.emit('chat message', {
+      name: msg
+    });
   });
 });
 
-// Store reference to io
-app.set('socketio', io);
+app.post('/newEvent/', function(req, res) {
+  // console.log(req.body)
+  // TODO: broad the newEvent to all clients
 
+  // var io = req.app.get('socketio');
+  io.emit('new event', req.body);
+  // io.socket.broadcast.emit('new event', req.body);
+  // console.log("IO" + io);
+  res.send("new event created")
+})
 
 /**
  * Normalize a port into a number, string, or false.
@@ -102,4 +107,6 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-module.exports = server;
+server.listen(app.get('port'), function() {
+  console.log('Server is running at localhost:' + app.get('port'));
+});
