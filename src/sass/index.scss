@@ -78,6 +78,9 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
                     float: right;
                     // margin-top: 30px;
                     -webkit-transition: padding 2s;
+                    .icon {
+                        margin: 0;
+                    }
                 }
             }
 
