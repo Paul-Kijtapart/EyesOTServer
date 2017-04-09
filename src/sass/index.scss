@@ -43,7 +43,9 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
     }
 
     .eventList {
-        height: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        padding-bottom: 70px;
 
         .item {
             height: auto;
