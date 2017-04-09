@@ -26,8 +26,8 @@ class App extends React.Component {
                 'data': 'Firearm',
                 'confidence': 0.21,
             }, {
-                'lat': '49.1895',
-                'lon': '-122.8478',
+                'lat': '49.2721',
+                'lon': '-123.1349',
                 'timestamp': '1491701696832',
                 'device_id': 'PPAP04',
                 'type': 'Sound',
