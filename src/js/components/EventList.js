@@ -66,8 +66,8 @@ class EventItem extends React.Component {
       					</h4>
       				<Label color={confidence[0]} key={confidence[0]}>{confidence[1]}</Label>
         		</List.Content>
-        		<div>
-      				<Icon name="check square" color="green" />
+        		<div className='approveButtonDiv'>
+      				<Icon className="approve" name="check square" color="green" size='big' />
       			</div>
 			</div>
 		);
