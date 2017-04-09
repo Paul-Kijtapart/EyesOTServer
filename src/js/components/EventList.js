@@ -54,18 +54,21 @@ class EventItem extends React.Component {
 					className="close icon dismiss"
 				/>
 				<List.Content>
-			    <Header as='h3'>
-			    	<Icon name={icon} />
-			    	<Header.Content>
+			    	<Header as='h3'>
+			    		<Icon name={icon} />
+			    		<Header.Content>
 			    		{type+'_'+device_id}
-			    	</Header.Content>
-			    </Header>
-  				<h4>
-  					Date: {timestamp.toDateString()} <br />
-      		  Time: {timestamp.toTimeString().split(" ")[0]}
-      		</h4>
-      		<Label color={confidence[0]} key={confidence[0]}>{confidence[1]}</Label>
-        </List.Content>
+			    		</Header.Content>
+			    	</Header>
+  						<h4>
+  							Date: {timestamp.toDateString()} <br />
+      		  				Time: {timestamp.toTimeString().split(" ")[0]}
+      					</h4>
+      				<Label color={confidence[0]} key={confidence[0]}>{confidence[1]}</Label>
+        		</List.Content>
+        		<div>
+      				<Icon name="check square" color="green" />
+      			</div>
 			</div>
 		);
 	}
