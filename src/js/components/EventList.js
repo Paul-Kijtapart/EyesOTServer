@@ -9,6 +9,17 @@ import {
 
 
 class EventItem extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleOnCloseItemClick = this.handleOnCloseItemClick.bind(this);
+	}
+
+	handleOnCloseItemClick(e) {
+		console.log("removed " + JSON.stringify(this.event));
+		e.preventDefault();
+		this.props.onCloseItemClick(this.event);
+	}
+
 	getSeverity(confidence) {
 		if (confidence > 0.3) {
 			return ['red', 'high'];
@@ -28,6 +39,8 @@ class EventItem extends React.Component {
 	}
 
 	render() {
+		const event = this.props.event;
+		this.event = event;
 		const device_id = this.props.device_id;
 		const data = this.props.data;
 		const type = this.props.type;
@@ -36,7 +49,10 @@ class EventItem extends React.Component {
 		const confidence = this.getSeverity(this.props.confidence);
 		return (
 			<div className="item">
-				<i className="close icon dismiss"></i>
+				<i 
+					onClick={this.handleOnCloseItemClick}
+					className="close icon dismiss"
+				/>
 				<List.Content>
 			    <Header as='h3'>
 			    	<Icon name={icon} />
@@ -57,16 +73,19 @@ class EventItem extends React.Component {
 
 class EventList extends React.Component {
 	render() {
+		const onCloseItemClick = this.props.onCloseItemClick;
 		const eventList = this.props.eventList
 			.map(function(event, index) {
 				return (
 					<EventItem
 						key={index}
+						event={event}
 						device_id={event.device_id}
 						data={event.data}
 						timestamp={event.timestamp}
 						type={event.type}
 						confidence={event.confidence}
+						onCloseItemClick={onCloseItemClick}
 					/>
 				);
 			});

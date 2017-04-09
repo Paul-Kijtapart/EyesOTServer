@@ -35,6 +35,26 @@ class App extends React.Component {
                 'confidence': 0.8
             }]
         };
+
+        this.removeEvent = this.removeEvent.bind(this);
+        this.onCloseItemClick = this.onCloseItemClick.bind(this);
+    }
+
+    removeEvent(event) {
+        let current_event_list = this.state.eventList;
+        let index = current_event_list.indexOf(event);
+
+        if (index === -1) {
+            return;
+        }
+        current_event_list.splice(index, 1)
+        this.setState({
+            eventList: current_event_list
+        });
+    }
+
+    onCloseItemClick(event) {
+        this.removeEvent(event);
     }
 
     componentDidMount() {
@@ -55,7 +75,10 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="leftContainer">
-                  <EventList eventList={this.state.eventList}/>
+                    <EventList 
+                        eventList={this.state.eventList}
+                        onCloseItemClick={this.onCloseItemClick}
+                    />
                 </div>
                 <div className="rightContainer">
                     <SearchBar />

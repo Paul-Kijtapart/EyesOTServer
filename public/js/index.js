@@ -43591,13 +43591,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var EventItem = function (_React$Component) {
 	_inherits(EventItem, _React$Component);
 
-	function EventItem() {
+	function EventItem(props) {
 		_classCallCheck(this, EventItem);
 
-		return _possibleConstructorReturn(this, (EventItem.__proto__ || Object.getPrototypeOf(EventItem)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (EventItem.__proto__ || Object.getPrototypeOf(EventItem)).call(this, props));
+
+		_this.handleOnCloseItemClick = _this.handleOnCloseItemClick.bind(_this);
+		return _this;
 	}
 
 	_createClass(EventItem, [{
+		key: 'handleOnCloseItemClick',
+		value: function handleOnCloseItemClick(e) {
+			console.log("removed " + JSON.stringify(this.event));
+			e.preventDefault();
+			this.props.onCloseItemClick(this.event);
+		}
+	}, {
 		key: 'getSeverity',
 		value: function getSeverity(confidence) {
 			if (confidence > 0.3) {
@@ -43620,6 +43630,8 @@ var EventItem = function (_React$Component) {
 	}, {
 		key: 'render',
 		value: function render() {
+			var event = this.props.event;
+			this.event = event;
 			var device_id = this.props.device_id;
 			var data = this.props.data;
 			var type = this.props.type;
@@ -43629,7 +43641,10 @@ var EventItem = function (_React$Component) {
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				'div',
 				{ className: 'item' },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'close icon dismiss' }),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
+					onClick: this.handleOnCloseItemClick,
+					className: 'close icon dismiss'
+				}),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["a" /* List */].Content,
 					null,
@@ -43678,14 +43693,17 @@ var EventList = function (_React$Component2) {
 	_createClass(EventList, [{
 		key: 'render',
 		value: function render() {
+			var onCloseItemClick = this.props.onCloseItemClick;
 			var eventList = this.props.eventList.map(function (event, index) {
 				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(EventItem, {
 					key: index,
+					event: event,
 					device_id: event.device_id,
 					data: event.data,
 					timestamp: event.timestamp,
 					type: event.type,
-					confidence: event.confidence
+					confidence: event.confidence,
+					onCloseItemClick: onCloseItemClick
 				});
 			});
 
@@ -54420,10 +54438,32 @@ var App = function (_React$Component) {
                 'confidence': 0.8
             }]
         };
+
+        _this.removeEvent = _this.removeEvent.bind(_this);
+        _this.onCloseItemClick = _this.onCloseItemClick.bind(_this);
         return _this;
     }
 
     _createClass(App, [{
+        key: 'removeEvent',
+        value: function removeEvent(event) {
+            var current_event_list = this.state.eventList;
+            var index = current_event_list.indexOf(event);
+
+            if (index === -1) {
+                return;
+            }
+            current_event_list.splice(index, 1);
+            this.setState({
+                eventList: current_event_list
+            });
+        }
+    }, {
+        key: 'onCloseItemClick',
+        value: function onCloseItemClick(event) {
+            this.removeEvent(event);
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             socket.on('new event', function (event) {
@@ -54447,7 +54487,10 @@ var App = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'leftContainer' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_EventList_js__["a" /* default */], { eventList: this.state.eventList })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_EventList_js__["a" /* default */], {
+                        eventList: this.state.eventList,
+                        onCloseItemClick: this.onCloseItemClick
+                    })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
