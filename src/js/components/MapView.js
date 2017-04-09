@@ -53,7 +53,7 @@ class MapView extends React.Component {
 		const mapboxAccessToken = 'pk.eyJ1IjoibmFwb24iLCJhIjoiY2l6MzdneThwMDUwbjJ3bjE0a2QxanB1NyJ9.2zlCnkvfXLp5AAfoMbeQSQ';
 		const tileLayer_config = {
 			url: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken,
-			id: "mapbox.light",
+			id: "mapbox.dark",
 			maxZoom: 18,
 			minZoom: 11,
 		};
