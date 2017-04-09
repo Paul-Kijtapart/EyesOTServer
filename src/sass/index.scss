@@ -3,15 +3,20 @@
 @import "susy";
 @import "breakpoint";
 
-$susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
+$susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override: no-gutters);
 
 @include border-box-sizing;
 
+#root {
+    height: 100%;
+}
+
 .app {
     @include container(1140px);
+    @include clearfix;
 
     background-color: #ccc;
-    height: auto;
+    height: 100%;
     margin: 0 auto;
 }
 
@@ -46,7 +51,7 @@ $susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
 }
 
 .rightContainer {
-    @include span(9 of 12 last);
+    @include span(9 wide of 12 last);
 
     height: 100%;
 
@@ -65,7 +70,7 @@ $susy: (columns: 12, gutter: 1 / 4, math: fluid, global-box-sizing: border-box);
             height: auto;
 
             #map {
-            	height: 500px;
+                height: 100vh;
             }
         }
     }

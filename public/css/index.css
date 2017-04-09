@@ -274,12 +274,19 @@ th {
 }
 
 /* line 10, ../../src/sass/index.scss */
+#root {
+  height: 100%;
+}
+
+/* line 14, ../../src/sass/index.scss */
 .app {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
+  *zoom: 1;
   background-color: #ccc;
-  height: auto;
+  height: 100%;
   margin: 0 auto;
 }
 /* line 12, ../../../../.rvm/gems/ruby-2.4.0/gems/susy-2.2.12/sass/susy/output/support/_clearfix.scss */
@@ -289,60 +296,59 @@ th {
   clear: both;
 }
 
-/* line 18, ../../src/sass/index.scss */
+/* line 23, ../../src/sass/index.scss */
 .leftContainer {
   width: 23.72881%;
   float: left;
-  margin-right: 1.69492%;
   background-color: black;
   height: 100%;
 }
-/* line 24, ../../src/sass/index.scss */
+/* line 29, ../../src/sass/index.scss */
 .leftContainer .eventList {
   height: 100%;
 }
-/* line 27, ../../src/sass/index.scss */
+/* line 32, ../../src/sass/index.scss */
 .leftContainer .eventList .item {
   cursor: pointer;
   height: auto;
 }
-/* line 31, ../../src/sass/index.scss */
+/* line 36, ../../src/sass/index.scss */
 .leftContainer .eventList .item i.dismiss {
   display: none;
 }
-/* line 36, ../../src/sass/index.scss */
+/* line 41, ../../src/sass/index.scss */
 .leftContainer .eventList .item:hover .dismiss {
   display: table-cell;
 }
-/* line 42, ../../src/sass/index.scss */
+/* line 47, ../../src/sass/index.scss */
 .leftContainer .eventList div.item .content {
   margin-bottom: 10px;
 }
 
-/* line 48, ../../src/sass/index.scss */
+/* line 53, ../../src/sass/index.scss */
 .rightContainer {
-  width: 74.57627%;
+  width: 76.27119%;
   float: right;
   margin-right: 0;
   height: 100%;
 }
-/* line 53, ../../src/sass/index.scss */
+/* line 58, ../../src/sass/index.scss */
 .rightContainer > div {
   clear: both;
 }
-/* line 57, ../../src/sass/index.scss */
+/* line 62, ../../src/sass/index.scss */
 .rightContainer .searchBar {
   height: auto;
 }
-/* line 61, ../../src/sass/index.scss */
+/* line 66, ../../src/sass/index.scss */
 .rightContainer .contentWrapper {
   height: auto;
 }
-/* line 64, ../../src/sass/index.scss */
+/* line 69, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView {
   height: auto;
 }
-/* line 67, ../../src/sass/index.scss */
+/* line 72, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView #map {
-  height: 500px;
+  height: 100vh;
 }
