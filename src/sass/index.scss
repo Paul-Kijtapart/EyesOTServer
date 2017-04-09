@@ -29,6 +29,8 @@ $susy: (columns: 12, math: fluid, global-box-sizing: border-box, gutter-override
     .searchBar {
         height: auto;
         padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 15px;
 
         div.inputBar {
             width: 100%;
