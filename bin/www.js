@@ -41,6 +41,12 @@ io.on('connection', function(socket) {
       name: msg
     });
   });
+
+  socket.on('remove', function(event) {
+    console.log("guys remove " + event);
+    socket.broadcast.emit("remove", event);
+    // io.emit('remove', event);
+  });
 });
 
 // TODO: refactor after

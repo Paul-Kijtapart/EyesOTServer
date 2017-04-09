@@ -46,6 +46,7 @@ class App extends React.Component {
         this.expectedCategorySet = new Set(["type", "data", "device_id"]);
         this.defaultExpectedCategoryList = ["type", "data", "device_id"];
 
+        this.isSameEvent = this.isSameEvent.bind(this);
         this.isEventMatchInput = this.isEventMatchInput.bind(this);
         this.getFilteredMatchedEventList = this.getFilteredMatchedEventList.bind(this);
         this.getTargetCategoryList = this.getTargetCategoryList.bind(this);
@@ -90,21 +91,32 @@ class App extends React.Component {
         this.changeCurrentEvent(event);
     }
 
+    isSameEvent(eventA, eventB) {
+        for (let prop in eventA) {
+            if (eventA[prop] !== eventB[prop]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     removeEvent(event) {
         let current_event_list = this.state.eventList;
-        let index = current_event_list.indexOf(event);
 
-        if (index === -1) {
-            return;
+        for (let i = current_event_list.length - 1; i >= 0; --i) {
+            if (this.isSameEvent(current_event_list[i], event)) {
+                current_event_list.splice(i, 1)
+                this.setState({
+                    eventList: current_event_list
+                });
+                return;
+            }
         }
-        current_event_list.splice(index, 1)
-        this.setState({
-            eventList: current_event_list
-        });
     }
 
     onCloseItemClick(event) {
         this.removeEvent(event);
+        socket.emit("remove", event);
     }
 
     componentDidMount() {
@@ -117,6 +129,12 @@ class App extends React.Component {
                     eventList: current_event_list
                 };
             });
+        }.bind(this));
+
+        socket.on('remove', function(event) {
+            console.log("remove event receives");
+            console.log(event);
+            this.removeEvent(event);
         }.bind(this));
     }
 

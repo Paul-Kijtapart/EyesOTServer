@@ -54993,6 +54993,7 @@ var App = function (_React$Component) {
         _this.expectedCategorySet = new Set(["type", "data", "device_id"]);
         _this.defaultExpectedCategoryList = ["type", "data", "device_id"];
 
+        _this.isSameEvent = _this.isSameEvent.bind(_this);
         _this.isEventMatchInput = _this.isEventMatchInput.bind(_this);
         _this.getFilteredMatchedEventList = _this.getFilteredMatchedEventList.bind(_this);
         _this.getTargetCategoryList = _this.getTargetCategoryList.bind(_this);
@@ -55044,23 +55045,35 @@ var App = function (_React$Component) {
             this.changeCurrentEvent(event);
         }
     }, {
+        key: 'isSameEvent',
+        value: function isSameEvent(eventA, eventB) {
+            for (var prop in eventA) {
+                if (eventA[prop] !== eventB[prop]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }, {
         key: 'removeEvent',
         value: function removeEvent(event) {
             var current_event_list = this.state.eventList;
-            var index = current_event_list.indexOf(event);
 
-            if (index === -1) {
-                return;
+            for (var i = current_event_list.length - 1; i >= 0; --i) {
+                if (this.isSameEvent(current_event_list[i], event)) {
+                    current_event_list.splice(i, 1);
+                    this.setState({
+                        eventList: current_event_list
+                    });
+                    return;
+                }
             }
-            current_event_list.splice(index, 1);
-            this.setState({
-                eventList: current_event_list
-            });
         }
     }, {
         key: 'onCloseItemClick',
         value: function onCloseItemClick(event) {
             this.removeEvent(event);
+            socket.emit("remove", event);
         }
     }, {
         key: 'componentDidMount',
@@ -55074,6 +55087,12 @@ var App = function (_React$Component) {
                         eventList: current_event_list
                     };
                 });
+            }.bind(this));
+
+            socket.on('remove', function (event) {
+                console.log("remove event receives");
+                console.log(event);
+                this.removeEvent(event);
             }.bind(this));
         }
     }, {
