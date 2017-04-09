@@ -45,7 +45,7 @@ class App extends React.Component {
             <div className="app">
                 <ul id="messages"></ul>
                 <form onSubmit={this.onFormSubmit} action="">
-                <input id="m" autocomplete="off" />
+                <input id="m" />
                     <button>Send</button>
                 </form>
             </div>
