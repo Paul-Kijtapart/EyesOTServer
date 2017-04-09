@@ -23751,7 +23751,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client___default()('http://localhost:3000');
+var socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client___default()('https://eyesofthethings.herokuapp.com/');
 
 // $(function() {
 //     var socket = io();

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import io from 'socket.io-client';
 
-let socket = io('http://localhost:3000');
+let socket = io('https://eyesofthethings.herokuapp.com/');
 
 // $(function() {
 //     var socket = io();
