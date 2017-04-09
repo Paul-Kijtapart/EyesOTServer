@@ -33,11 +33,28 @@ class EventInfoBox extends React.Component {
 
 class MapView extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {isHoverOn: false};
+		this.handleMarkerHoverOn = this.handleMarkerHoverOn.bind(this);
+		this.handleMarkerHoverOff = this.handleMarkerHoverOff.bind(this);
+	}
 	componentDidMount() {
 
 	}
 
+	handleMarkerHoverOn(){
+		console.log("hoverOn");
+		this.setState({isHoverOn: true});
+	}
+
+	handleMarkerHoverOff(){
+		console.log("hoverOFF");
+		this.setState({isHoverOn: false});
+	}
+
 	render() {
+
 		const map_config = {
 			center: VANCOUVER_POSITION,
 			zoomControl: false,
@@ -67,6 +84,8 @@ class MapView extends React.Component {
 			fillOpacity: 0.8
 		}
 
+		const that = this;
+
 		const eventList = this.props.eventList;
 		const markers = eventList.map(function(event, index) {
 			const position = {
@@ -78,10 +97,16 @@ class MapView extends React.Component {
 				<Marker
 					key={index}
 					position={position}
+					onMouseEnter={that.state.handleMarkerHoverOn}
+	    			onMouseLeave={that.state.handleMarkerHoverOff}
 				>
-					<Popup>
-						<EventInfoBox {...event}/>
-					</Popup>
+				{that.state.isHoverOn? console.log("hover on"):console.log("hover off")}
+						// <Popup>
+						// <EventInfoBox {...event}/> 
+						// </Popup>: null}
+
+						
+					
 				</Marker>
 			);
 		});
