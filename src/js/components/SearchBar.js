@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
 					<input 
 						className="prompt" 
 						type="text" 
-						placeholder="Common passwords..."
+						placeholder="Search by type of the event"
 						onChange={this.handleInputTextChange} 
 						value={current_search_text}
 					/>
