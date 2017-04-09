@@ -356,31 +356,35 @@ th {
 .leftContainer .eventList .item .approveButtonDiv .label:hover {
   cursor: pointer;
 }
-/* line 87, ../../src/sass/index.scss */
+/* line 81, ../../src/sass/index.scss */
+.leftContainer .eventList .item .approveButtonDiv .label .icon {
+  margin: 0;
+}
+/* line 90, ../../src/sass/index.scss */
 .leftContainer .eventList div.item .content {
   margin-bottom: 10px;
 }
 
-/* line 93, ../../src/sass/index.scss */
+/* line 96, ../../src/sass/index.scss */
 .rightContainer {
   width: 76.27119%;
   float: right;
   margin-right: 0;
   height: 100%;
 }
-/* line 98, ../../src/sass/index.scss */
+/* line 101, ../../src/sass/index.scss */
 .rightContainer > div {
   clear: both;
 }
-/* line 102, ../../src/sass/index.scss */
+/* line 105, ../../src/sass/index.scss */
 .rightContainer .contentWrapper {
   height: auto;
 }
-/* line 105, ../../src/sass/index.scss */
+/* line 108, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView {
   height: auto;
 }
-/* line 108, ../../src/sass/index.scss */
+/* line 111, ../../src/sass/index.scss */
 .rightContainer .contentWrapper .mapView #map {
   height: 100vh;
 }
